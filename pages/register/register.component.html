@@ -1,0 +1,71 @@
+<ion-content>
+    <div class="login-container" [formGroup]='registrationForms'  >
+        <div class="login-content">
+            <p class="title">SignUp</p>
+            <p class="title-intro">Welcome to Camille</p>
+            <mat-form-field appearance='outline' >
+                <mat-label>Name</mat-label>
+                <input matInput type="text" formControlName='name' >
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-error *ngIf="registrationForms.get('name')?.hasError('required')">
+                    * Please Name is required
+                </mat-error>
+                <mat-error *ngIf="registrationForms.get('name')?.hasError('minLength')">
+                    * Name should have atleast 8 characters
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance='outline' >
+                <mat-label>Email</mat-label>
+                <input matInput type="text" formControlName='email' >
+                <mat-icon matSuffix>mail</mat-icon>
+                <mat-error *ngIf="registrationForms.get('email')?.hasError('required')">
+                    * Please Email is required
+                </mat-error>
+                <mat-error *ngIf="registrationForms.get('email')?.hasError('email')">
+                    * Enter a valid email
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance='outline' color='primary'>
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hidden ? 'password': 'text'"  formControlName='password' >
+                <mat-icon matSuffix (click)='hidden=!hidden'>{{hidden ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="registrationForms.get('password')?.hasError('required')">
+                    * Please Password is required
+                </mat-error>
+                <mat-error *ngIf="registrationForms.get('password')?.hasError('minLength')">
+                    * Password should be atleast 8 characters
+                </mat-error>
+                <mat-error *ngIf="registrationForms.get('password')?.hasError('pattern')" class="error">
+                    * Password not strong
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance='outline' color='primary'>
+                <mat-label>ConfirmPassword</mat-label>
+                <input matInput [type]="hide ? 'password': 'text'"  formControlName='Confirmpassword' >
+                <mat-icon matSuffix (click)='hide=!hide'>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="registrationForms.get('Confirmpassword')?.hasError('required')">
+                    * Please Confirmation Password is required
+                </mat-error>
+                <mat-error *ngIf="registrationForms.get('Confirmpassword')?.hasError('minLength')">
+                    *Confirmation Password should be atleast 8 characters
+                </mat-error>
+                <mat-error *ngIf="registrationForms.get('Confirmpassword')?.hasError('matching')">
+                    Password must match.
+                    </mat-error>
+            </mat-form-field>
+            <ngx-spinner type='ball-circus'>
+                <P style="font-size: 20px; color: white;">Loading.......</P>
+            </ngx-spinner>
+           <button [disabled]='!registrationForms.valid' mat-raised-button color='primary' (click)='registerWithEmailAndPassword()'>Sigup</button>
+            <div class="or-line-dividder">
+                <p>Or</p>
+            </div>
+            <div class="google-cart">
+                    <app-googlecart></app-googlecart>
+            </div>
+            <p class="alternative">Don't Have an Account ? <span [routerLink]="['/login']">Login</span></p>
+        </div>
+       
+    </div>
+    
+</ion-content>

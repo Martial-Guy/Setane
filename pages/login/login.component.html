@@ -1,0 +1,46 @@
+
+<ion-content><div class="login-container" [formGroup]='loginForms'>
+    <div class="login-content">
+        <p class="title">Login</p>
+        <p class="title-intro">Welcome to Camille</p>
+        <mat-form-field appearance='outline' >
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName='email' >
+            <mat-icon matSuffix>mail</mat-icon>
+            <mat-error *ngIf="loginForms.get('email')?.hasError('required')">
+                * Please Email is required
+            </mat-error>
+            <mat-error *ngIf="loginForms.get('email')?.hasError('email')">
+                * Enter a valid email
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance='outline' color='primary'>
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hidden ? 'password': 'text'"  formControlName='password' >
+            <mat-icon matSuffix (click)='hidden=!hidden'>{{hidden ? 'visibility_off'  :  'visibility' }}</mat-icon>
+            <mat-error *ngIf="loginForms.get('password')?.hasError('required')">
+                * Please Password is required
+            </mat-error>
+            <mat-error *ngIf="loginForms.get('password')?.hasError('minLength')">
+                * Password should be atleast 8 characters
+            </mat-error>
+            <mat-error *ngIf="loginForms.get('password')?.hasError('pattern')">
+                * should contain one number,one upper and lower case character and one special character
+            </mat-error>
+        </mat-form-field>
+          <ngx-spinner type='ball-circus'>
+              <P style="font-size: 20px; color: white;">Loading.......</P>
+          </ngx-spinner>
+        <p class="forgot-password" (click)='openMat()'>Forgot Password?</p>
+        <button [disabled]='!loginForms.valid'  mat-raised-button color='primary' (click)='onsubmit()'>Login</button>
+        <div class="or-line-dividder">
+            <p>Or</p>
+        </div>
+        <div class="google-cart">
+                <app-googlecart></app-googlecart>
+        </div>
+        <p class="alternative">Don't Have an Account ? <span [routerLink]="['/register']">SignUp</span></p>
+    </div>
+   
+</div>
+</ion-content>

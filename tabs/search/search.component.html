@@ -1,0 +1,65 @@
+<ion-header [class]="searchBar ? '' : 'ion-no-border'  ">
+    <ion-toolbar>
+        <ion-buttons *ngIf="searchBar" slot="start" (click)="toogleSearch(1)">
+            <ion-icon slot="icon-only"  name="arrow-back-outline"></ion-icon>
+        </ion-buttons>
+        <ion-buttons *ngIf="searchBar" slot="end">
+            <ion-button (click)="toogleSearch(1)">
+                <ion-icon slot="icon-only" *ngIf="searchBar" name="close-circle" ></ion-icon>
+            </ion-button>
+        </ion-buttons>
+         <ion-title mode="ios" (click)="toogleSearch()" *ngIf="searchBar">{{query}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+ <ion-content [color]="searchBar ? 'light' :''">
+    <ion-grid class="ion-padding-horizontal" *ngIf="!searchBar">
+    <ion-row class="ion-aligne-items-center">
+        <ion-searchbar 
+        search-icon="search-circle" 
+        animated="true" 
+        [(ngModel)]="query" 
+         type="search"
+         mode="ios"
+         placeholder="Search"
+         (ionInput)="onInputQuery() "
+          >
+          <ion-buttons slot="end">
+            <ion-button (click)="updateSearch()" *ngIf="searchBtn">
+              <ion-icon name="search" color="info"></ion-icon>
+              search
+            </ion-button>
+          </ion-buttons>
+        </ion-searchbar>
+        </ion-row>
+        <ion-row class="ion-align-items-center ion-margin-top">
+            <ion-col size="12">
+                <ion-label>
+                    Top Categories
+                </ion-label>
+            </ion-col>
+            <ion-col size="6" *ngFor="let category of categories" class="ion-text-center">
+                <ion-card  class="card"  
+                [style.background-image]="'linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)) ,url('+ category?.cover+')'"
+                (click)="updateSearch(category.name)"
+                >
+                    <ion-card-header>
+                            <ion-card-title size="1" color="light">
+                                {{category.name}}
+                            </ion-card-title>
+                    </ion-card-header>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid> 
+    <ion-list  *ngIf="!isLoading && searchBar && restaurant.length >0 ">
+        <app-restaurent *ngFor="let restaurent of restaurant" [restaurent]="restaurent" ></app-restaurent>
+        <ion-button (click)="addToCart(restaurant)">Add To Cart</ion-button>
+    </ion-list>
+    <app-empty-screen 
+    [model]="item"
+    *ngIf="!isLoading && searchBar && restaurant.length ==0 ">
+    </app-empty-screen>
+<div *ngIf="isLoading" align="center" class="transformeCenter">
+    <ion-spinner color="primary"></ion-spinner>
+</div>
+ </ion-content>

@@ -1,0 +1,28 @@
+
+  <ion-content>
+  <ion-list *ngFor="let item of cartItems">
+    <ng-container >
+        <ion-item lines="full">
+        <ion-label>
+            <ion-text class="item"> {{item?.name}}</ion-text>
+            <p class="price"><ion-text color="dark">,{{item?.price}}</ion-text></p>
+            <p class="ion-text-wrap ion-text-justify" *ngIf="item?.desc">{{item?.desc}}</p>
+        </ion-label>
+        <ion-thumbnail slot="start" *ngIf="item?.cover">
+            <ion-img [src]="item?.cover"></ion-img>
+        </ion-thumbnail>
+        <ion-button (click)="incrementItem(item)"><ion-icon name="add"></ion-icon></ion-button>
+             <div class="counter">
+                <ion-text> {{getQuantity(item)}}</ion-text> 
+             </div>
+            <ion-button (click)="decrementItem(item)"><ion-icon name="remove"></ion-icon></ion-button>
+        <ion-button (click)="rItem(item)" color="danger">
+            <ion-icon name="trash"></ion-icon>
+        </ion-button>
+        </ion-item>
+    </ng-container>
+ </ion-list>
+ <div>
+    
+ </div>
+</ion-content>

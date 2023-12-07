@@ -1,0 +1,22 @@
+<button  mat-icon-button style="float:right;margin-top: 5px;" matDialogClose>
+    <mat-icon>close</mat-icon>
+</button>
+<mat-dialog-content  style="float:right;margin-top: 30px;">
+    <header style="font-size: 1rem; margin-bottom: 12px; font-weight: bolder;">Reset Password</header>
+    <p>
+        <mat-form-field appearance='outline' [formGroup]='reset'  >
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName='email' >
+            <mat-icon matSuffix>mail</mat-icon>
+             <mat-error *ngIf="reset.get('email')?.hasError('required')">
+                * Please Email is required
+            </mat-error>
+            <mat-error *ngIf="reset.get('email')?.hasError('email')">
+                * Enter a valid email
+            </mat-error> 
+        </mat-form-field>
+    </p>
+    <mat-dialog-actions >
+        <button (click)='resets()' mat-raised-button color='primary' style="width: 100%;" [disabled]='!reset.valid'>Reset</button>
+    </mat-dialog-actions>
+</mat-dialog-content>

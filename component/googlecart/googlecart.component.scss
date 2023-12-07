@@ -1,0 +1,23 @@
+
+.google-cart-container{
+    padding: 13px 11px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    border: 1px ;
+   border: solid ;
+   margin-top: 20px;
+    border-radius:  5px; 
+    cursor: pointer;
+    font-weight: bold;
+    ion-icon{
+        position: absolute;
+        left: 2%;
+        top: 50%;
+        transform: translateY(-50%);
+       font-size: 25px;
+    }
+}
+.google-cart-container:hover{
+    background: rgb(202, 195, 195);
+}

@@ -1,0 +1,40 @@
+ion-list {
+   margin:5%;
+   border: solid;
+   border-color: lightgray;
+   border-radius: 10px;
+     ion-item {
+        ion-label {
+            ion-text.item {
+                font-weight: 450;
+            }
+            .price {
+                padding: 3px 0;
+            }
+        }
+        ion-thumbnail {
+            width: 10vh;
+            height: 10vh;
+            ion-img {
+                border-radius:5px;
+                height: 100%;
+                width: 100%;
+            }
+        }
+        ion-button{
+            width: 30px;
+            height: 30px;
+            margin: 3px;
+        }
+        .counter{
+            width: 30px;
+            height: 30px;
+            border: solid;
+            border-color: lightgrey;
+            background-color:lightgrey ;
+            border-radius: 3px;
+            text-align: center;
+        }
+       
+    }
+}

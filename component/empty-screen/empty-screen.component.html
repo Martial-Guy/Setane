@@ -1,0 +1,16 @@
+<ion-grid>
+    <ion-row>
+        <ion-col class="ion-text-center">
+            <ion-icon *ngIf="model?.icon"  [name]="model?.icon" [color]="model?.color">   
+            </ion-icon>
+        <img  *ngIf="model?.image" [src]="model?.image" alt=""> 
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <ion-label class="text">
+                 {{model?.title}}
+            </ion-label>
+        </ion-col>
+    </ion-row>
+</ion-grid>

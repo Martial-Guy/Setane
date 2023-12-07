@@ -1,0 +1,83 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@mixin color($theme){
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+  // Get the primary color palette from the color-config.
+  $primary-palette: map.get($color-config, 'primary');
+  .mat-row:hover {
+    background-color: mat.get-color-from-palette($primary-palette, 100);
+  }
+}
+.login-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    min-height: 100hv;
+    margin-top: 10%;
+    justify-content: center;
+    .title{
+        font-size: 34px;
+        font-weight: bold;
+        text-align: center;
+        padding-bottom: 16px;
+    }
+    .title-intro{
+        font-size: 24px;
+        text-align: center;
+        font-weight: bold;
+    }
+      .forgot-password{
+          font-size: 16;
+          text-align: end;
+          color: rgb(68, 68, 235);
+          cursor: pointer;
+      }
+      .alternative{
+          font-weight: 500;
+          margin-top: 30px;
+          text-align: center;
+          span{
+              color:rgb(68, 68, 235);
+              cursor: pointer;
+          }
+      }
+      .google-cart{
+          padding: 24;
+      }
+    .login-content{
+       
+        width:60% ;
+        display: flex;
+        flex-direction: column;
+       
+    }
+    .or-line-dividder{
+        border: 1px;
+        position: relative;
+        margin-top: 20px;
+       border :solid;
+        width: 100%;
+       p{
+        background: white;
+        position: absolute;
+        width:50px ;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        left: 50%;
+       }
+    }
+    button{
+      
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        height: 50px;
+        border-radius: 5px;
+    }
+    @media only screen and (max-width: 1025px) { 
+      
+     }
+
+}

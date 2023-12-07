@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{restaurent?.name}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button shape="rounded" color="light" fill="solid" >
+              <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+     <div class="bg-image" [style.background-image]="'url('+ restaurent?.cover +')'"> </div>
+     <ion-grid>
+        <ion-row class="ion-padding-start">
+            <ion-col size="12">
+              <h2>
+                <b>{{restaurent?.name}}</b>
+              </h2>
+            </ion-col>
+            <ion-col size="12">
+                <ion-icon name="star" color="dark"></ion-icon>
+               <ion-text color="dark"><b> {{restaurent?.rating}}</b></ion-text>
+               <span class="emoji">&#8226;</span>
+               <ion-text color="dark"><b> {{getCuisines(restaurent?.cuisines)}}</b></ion-text>
+               <span class="emoji">&#8226;</span>
+               <ion-text color="dark"><b>, {{restaurent?.price}} for Two</b></ion-text>
+            </ion-col>
+            <ion-col size="12">
+                <ion-icon name="time-outline" color="meduim"></ion-icon>
+               <ion-text color="dark">{{restaurent?.delivery_time}} mins</ion-text>
+               <span class="emoji">&#8226;</span>
+               <ion-icon name="location-outline" color="meduim"></ion-icon>
+               <ion-text color="dark">{{restaurent?.distance}} kms. away</ion-text>
+            </ion-col>
+            <ion-col size="12">
+                <ion-button (click)="addToCart(restaurent)">Add To Cart</ion-button>
+            </ion-col>
+        </ion-row>
+     </ion-grid>
+     <ion-list *ngFor="let category of categories">
+        <ion-list-header>
+            <ion-label>
+                {{category?.name}}
+            </ion-label>
+        </ion-list-header>
+        <ng-container *ngFor="let item of items">
+            <ion-item *ngIf="category?.id == item?.category_id" lines="full">
+            <ion-label>
+                <ion-text class="item"> {{item?.name}}</ion-text>
+                <p class="price"><ion-text color="dark">,{{item?.price}}</ion-text></p>
+                <p class="ion-text-wrap ion-text-justify" *ngIf="item?.desc">{{item?.desc}}</p>
+            </ion-label>
+            <ion-thumbnail slot="start" *ngIf="item?.cover">
+                <ion-img [src]="item?.cover"></ion-img>
+            </ion-thumbnail>
+            <ion-button (click)="addToCart(item)">Add To Cart</ion-button>
+            </ion-item>
+        </ng-container>
+     </ion-list>
+</ion-content>
